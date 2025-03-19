@@ -2,10 +2,6 @@
 const mongoose = require('mongoose');
 
 const LessonSchema = new mongoose.Schema({
-  listeners: {
-    type: Number,
-    default: 0
-  }, 
   title: {
     type: String,
     required: [true, 'Please add a title'],
@@ -95,7 +91,7 @@ const LessonSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, { suppressReservedKeyWarning: true});
+});
 
 // Create a slug from the title
 LessonSchema.pre('save', function(next) {
