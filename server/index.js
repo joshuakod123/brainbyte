@@ -39,6 +39,10 @@ console.log('Course routes type:', typeof courseRoutes);
 const paymentRoutes = require('./routes/payments');
 console.log('Payment routes type:', typeof paymentRoutes);
 
+// Import streak routes
+const streakRoutes = require('./routes/streaks');
+console.log('Streak routes type:', typeof streakRoutes);
+
 // Connect to MongoDB with improved error handling
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/brainbyte', {
   useNewUrlParser: true,
@@ -82,6 +86,13 @@ if (typeof paymentRoutes === 'function') {
   app.use('/api/payments', paymentRoutes);
 } else {
   console.error('Payment routes is not a valid middleware!');
+}
+
+// Mount streak routes
+if (typeof streakRoutes === 'function') {
+  app.use('/api/streaks', streakRoutes);
+} else {
+  console.error('Streak routes is not a valid middleware!');
 }
 
 // Health check endpoint
